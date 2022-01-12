@@ -25,7 +25,7 @@ const Cart = ({
         <div className="sidebar-top">
           <div className="card-side-items">
             {cartItems.map((item) => (
-              <div className="card-side-item" key={item.id}>
+              <div className="card-side-item" key={item._id}>
                 <div className="card-side-item-inner">
                   <img
                     width={70}
@@ -39,7 +39,7 @@ const Cart = ({
                     <b>{item.price} руб.</b>
                   </div>
                   <img
-                    onClick={() => handleRemoveCartItem(item.id)}
+                    onClick={() => handleRemoveCartItem(item._id)}
                     className="close-pic"
                     src="./img/close.svg"
                     alt="close"

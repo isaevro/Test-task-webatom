@@ -1,16 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ContentLoader from 'react-content-loader'
 import Card from '../components/Card'
-const Homepage = ({
-  items,
-  searchValue,
-  handleInput,
-  cartItems,
-  addToCart,
-  addToFavorite,
-  favoriteItems,
-  isLoading,
-}) => {
+const Homepage = ({ items, cartItems, addToCart, isLoading, molecules }) => {
+  const handleInput = (e) => {
+    setSearchValue(e.target.value)
+  }
+  const [searchValue, setSearchValue] = useState('')
   return (
     <>
       <div className="content">
@@ -19,7 +14,7 @@ const Homepage = ({
             <h1>{searchValue ? `поиск по ${searchValue}` : 'все кроссовки'}</h1>
 
             <div className="search">
-              <img src="./img/search.svg" alt="search" />
+              <img src="../img/search.svg" alt="search" />
               <input
                 type="text"
                 onChange={handleInput}
@@ -76,16 +71,14 @@ const Homepage = ({
               )
               .map((item) => (
                 <Card
-                  key={item.id}
+                  discount_price={item.discount_price}
+                  composition={item.composition}
+                  molecules={molecules}
+                  key={item._id}
                   title={item.title}
                   price={item.price}
-                  img={item.imgURL}
-                  isCartAdded={cartItems.map((e) => e.id).includes(item.id)}
+                  isCartAdded={cartItems.map((e) => e._id).includes(item._id)}
                   addToCart={() => addToCart(item)}
-                  addToFavorite={() => addToFavorite(item)}
-                  isFavoriteAdded={favoriteItems
-                    .map((e) => e.id)
-                    .includes(item.id)}
                 />
               ))}
           </div>

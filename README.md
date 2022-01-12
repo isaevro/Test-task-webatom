@@ -1,2 +1,1 @@
-# yeezy-boost
- yeezy-boost site
+# тестовое задание

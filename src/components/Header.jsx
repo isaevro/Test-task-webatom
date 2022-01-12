@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Header = ({ open, price, favoriteItems, myPurchases }) => {
+const Header = ({ open, price, myPurchases }) => {
   return (
     <>
       <header>
@@ -11,8 +11,8 @@ const Header = ({ open, price, favoriteItems, myPurchases }) => {
               <div className="headerLeft">
                 <img width={80} max-height={40} src="./img/logo.png" alt="" />
                 <div className="headerInfo">
-                  <h3>yeezy boost</h3>
-                  <div className="sub-title">магазин лучших кроссовок</div>
+                  <h3>Салаты из малекул</h3>
+                  <div className="sub-title">магазин лучших салатов</div>
                 </div>
               </div>
             </Link>
@@ -24,20 +24,14 @@ const Header = ({ open, price, favoriteItems, myPurchases }) => {
                 </li>
                 <li style={{ position: 'relative' }}>
                   <Link to="/favorites">
+                    Создать свой салат
                     <img
                       width="20"
                       height="20"
                       style={{ display: 'block' }}
-                      src={
-                        favoriteItems.length === 0
-                          ? './img/hearthead.svg'
-                          : './img/heartadd.svg'
-                      }
+                      src="img/heartadd.svg"
                       alt="favorite"
                     />
-                    {favoriteItems.length !== 0 && (
-                      <div className="favcount">{favoriteItems.length}</div>
-                    )}
                   </Link>
                 </li>
                 <li style={{ position: 'relative' }}>
