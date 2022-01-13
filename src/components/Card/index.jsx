@@ -7,6 +7,7 @@ const Card = ({
   isCartAdded,
   molecules,
   composition,
+  discount_price,
 }) => {
   const handleClickAdd = () => {
     addToCart()
@@ -22,22 +23,26 @@ const Card = ({
           alt="salad"
           className="yeezy-card-img"
         />
-        {title}
-        <p>
+        <div className={styles.title}>{title}</div>
+
+        <p className={styles.subtext}>
           состав:{' '}
           {composition.map((mol) => (
             <span key={mol}>
               {molecules &&
                 molecules
                   .filter((e) => e._id === mol)
-                  .map((e) => e.title + ', ')}
+                  .map((e) => e.title + ' ')}
             </span>
           ))}
         </p>
         <div className={styles.price}>
           <div className={styles.priceInner}>
             <p>ЦЕНА:</p>
-            <b>{price} руб.</b>
+            <b>
+              {discount_price} ${' '}
+              <span className={styles.oldprice}>{price} $</span>{' '}
+            </b>
           </div>
           <img
             onClick={handleClickAdd}

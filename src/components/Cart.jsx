@@ -7,6 +7,8 @@ const Cart = ({
   price,
   handleBuy,
   isOrdered,
+  error,
+  isOrderLoading,
 }) => {
   return (
     <div
@@ -31,12 +33,12 @@ const Cart = ({
                     width={70}
                     height={70}
                     className="sidebar-pic"
-                    src={item.imgURL}
-                    alt="yeezy-item"
+                    src="/img/salad.jpg"
+                    alt="salad"
                   />
                   <div className="card-side-descr">
                     <p>{item.title}</p>
-                    <b>{item.price} руб.</b>
+                    <b>{item.discount_price} $</b>
                   </div>
                   <img
                     onClick={() => handleRemoveCartItem(item._id)}
@@ -47,7 +49,7 @@ const Cart = ({
                 </div>
               </div>
             ))}
-            {cartItems.length === 0 && !isOrdered && (
+            {cartItems.length === 0 && !isOrdered && !error && !isOrderLoading && (
               <div style={{ paddingTop: '80px' }} className="no-items">
                 <img
                   style={{ cursor: 'default' }}
@@ -60,7 +62,14 @@ const Cart = ({
                 <p>добавьте товар в корзину</p>
               </div>
             )}
-            {cartItems.length === 0 && isOrdered && (
+            {isOrderLoading && (
+              <div style={{ paddingTop: '80px' }} className="no-items">
+                <h2 style={{ color: '#9dd558' }}>
+                  'идет обработка запроса...'
+                </h2>
+              </div>
+            )}
+            {cartItems.length === 0 && isOrdered && !error && (
               <div style={{ paddingTop: '80px' }} className="no-items">
                 <img
                   style={{ cursor: 'default' }}
@@ -73,24 +82,22 @@ const Cart = ({
                 <p>Ваш заказ оформлен.</p>
               </div>
             )}
+
+            {cartItems.length === 0 && error && (
+              <div style={{ paddingTop: '80px' }} className="no-items">
+                <h2 style={{ color: '#9dd558' }}>произошла ошибка</h2>
+                <p>{error}</p>
+              </div>
+            )}
           </div>
         </div>
         <div className="sidebar-bottom">
           <div className="sidebar-price">
-            <p>Итого:</p>
+            <b>Итого:</b>
             <div></div>
-            <p>{price} руб.</p>
+            <p>{price} $</p>
           </div>
-          <div className="sidebar-price">
-            <p>Скидка 20%:</p>
-            <div></div>
-            <p>{(Math.round(price * 0.2) * 100) / 100} руб.</p>
-          </div>
-          <div className="sidebar-price">
-            <b>С учетом скидки:</b>
-            <div></div>
-            <b>{price - (Math.round(price * 0.2) * 100) / 100} руб.</b>
-          </div>
+
           <button
             className="sidebar-submit"
             disabled={cartItems.length === 0 ? true : false}

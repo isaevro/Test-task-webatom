@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Cart from './components/Cart'
 import Header from './components/Header'
-import Favoritepage from './Pages/Favoritepage'
 import Homepage from './Pages/Homepage'
 import Personal from './Pages/Personalpage'
+import { SelfMadepage } from './Pages/SelfMadepage'
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false)
@@ -13,10 +13,39 @@ function App() {
   const [myPurchases, setMyPurchases] = useState([])
   const [isOrdered, setIsOrdered] = useState(false)
 
+  const [isOrderLoading, setIsOrderLoading] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [salads, setSalads] = useState([])
   const [molecules, setMolecules] = useState([])
+
+  // отправка запроса на покупку и обработка ошибок
+  const handleBuy = () => {
+    async function postBuy() {
+      try {
+        setIsOrderLoading(true)
+        setError('')
+        setCartItems([])
+        let res = await axios.post('http://test-job.webatom.ru/order', {
+          order: cartItems,
+        })
+        if (res.data.success) {
+          console.log(!res.data.success)
+          setIsOrderLoading(false)
+          setMyPurchases((prev) => [...prev, ...cartItems])
+          setIsOrdered(true)
+        } else {
+          throw new Error('Неуспешный ответ от сервера')
+        }
+      } catch (err) {
+        setIsOrderLoading(false)
+        setCartItems([])
+        console.log(err)
+        setError(err.message)
+      }
+    }
+    postBuy()
+  }
 
   //Загрузка items
   useEffect(() => {
@@ -36,7 +65,6 @@ function App() {
       } catch (err) {
         setIsLoading(false)
         setError(err.message)
-        throw new Error(err.message)
       }
     }
     getData()
@@ -63,23 +91,19 @@ function App() {
     setCartOpen(!cartOpen)
     setIsOrdered(false)
   }
-  const handleBuy = () => {
-    setMyPurchases((prev) => [...prev, ...cartItems])
-    setCartItems([])
-    setIsOrdered(true)
-  }
+
   const handleClearPurchases = () => {
     setMyPurchases([])
   }
-
   //вычисление цены
   const price = () => {
-    let res = cartItems.reduce((sum, cur) => sum + +cur, 0)
-    return res
+    let res = cartItems
+      .map((e) => e.discount_price)
+      .reduce((sum, cur) => sum + +cur, 0)
+    return Math.round(res * 100) / 100
   }
   return (
     <div className="App">
-      {error ? error : null}
       <div className="main-container">
         <Header
           myPurchases={myPurchases}
@@ -91,6 +115,7 @@ function App() {
             path="/"
             element={
               <Homepage
+                error={error}
                 molecules={molecules}
                 items={salads}
                 cartItems={cartItems}
@@ -101,13 +126,11 @@ function App() {
           />
 
           <Route
-            path="/favorites"
-            element={
-              <Favoritepage cartItems={cartItems} addToCart={addToCart} />
-            }
+            path="/selfmade"
+            element={<SelfMadepage addToCart={addToCart} />}
           />
 
-          <Route
+          {/* <Route
             path="/personal"
             element={
               <Personal
@@ -115,11 +138,13 @@ function App() {
                 myPurchases={myPurchases}
               />
             }
-          />
+          /> */}
         </Routes>
 
         {cartOpen ? (
           <Cart
+            isOrderLoading={isOrderLoading}
+            error={error}
             handleBuy={handleBuy}
             price={price()}
             cartItems={cartItems}

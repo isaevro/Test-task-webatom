@@ -20,19 +20,10 @@ const Header = ({ open, price, myPurchases }) => {
               <ul className="headerRight">
                 <li onClick={open}>
                   <img src="./img/cart.svg" alt="cart" />
-                  <span>{price}р</span>
+                  <span>{price}$</span>
                 </li>
                 <li style={{ position: 'relative' }}>
-                  <Link to="/favorites">
-                    Создать свой салат
-                    <img
-                      width="20"
-                      height="20"
-                      style={{ display: 'block' }}
-                      src="img/heartadd.svg"
-                      alt="favorite"
-                    />
-                  </Link>
+                  <Link to="/selfmade">Создать свой салат</Link>
                 </li>
                 <li style={{ position: 'relative' }}>
                   <Link to="/personal">
