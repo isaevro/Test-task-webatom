@@ -30,7 +30,7 @@ const Cart = ({ close }) => {
                     width={70}
                     height={70}
                     className="sidebar-pic"
-                    src="/img/salad.jpg"
+                    src="./img/salad.jpg"
                     alt="salad"
                   />
                   <div className="card-side-descr">

@@ -20,7 +20,7 @@ const Card = ({
         <img
           width={133}
           height={112}
-          src="/img/salad.jpg"
+          src="./img/salad.jpg"
           alt="salad"
           className="yeezy-card-img"
         />

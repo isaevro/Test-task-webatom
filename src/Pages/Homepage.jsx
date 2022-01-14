@@ -19,7 +19,7 @@ const Homepage = () => {
             <h1>{searchValue ? `поиск по ${searchValue}` : 'все салаты'}</h1>
             <h2>{error ? error : null}</h2>
             <div className="search">
-              <img src="../img/search.svg" alt="search" />
+              <img src="./img/search.svg" alt="search" />
               <input
                 type="text"
                 onChange={handleInput}
