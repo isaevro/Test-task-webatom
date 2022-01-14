@@ -1,21 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 import Skeleton from '../components/Skeleton'
-import { postingCartItems } from '../redux'
 const Homepage = () => {
   const { salads, molecules, isLoading, error } = useSelector(
     (state) => state.items,
   )
   const { cartItems } = useSelector((state) => state.cart)
-  const dispatch = useDispatch()
   const handleInput = (e) => {
     setSearchValue(e.target.value)
   }
   const [searchValue, setSearchValue] = useState('')
   return (
     <>
-      <button onClick={() => dispatch(postingCartItems())}>123</button>
       <div className="content">
         <div className="container">
           <div className="title">

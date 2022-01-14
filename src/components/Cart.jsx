@@ -2,12 +2,11 @@ import React from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { postingCartItems, removeCartItem } from '../redux'
-const Cart = ({ close, isOrdered }) => {
-  const { cartItems, price, error, isLoading } = useSelector(
+const Cart = ({ close }) => {
+  const { cartItems, price, error, isLoading, isOrdered } = useSelector(
     (state) => state.cart,
   )
   const dispatch = useDispatch()
-  console.log(cartItems + '123')
   return (
     <div
       className="sidebar-wrapper"
@@ -25,7 +24,7 @@ const Cart = ({ close, isOrdered }) => {
         <div className="sidebar-top">
           <div className="card-side-items">
             {cartItems.map((item) => (
-              <div className="card-side-item" key={item._id}>
+              <div className="card-side-item" key={item.id}>
                 <div className="card-side-item-inner">
                   <img
                     width={70}
@@ -39,7 +38,7 @@ const Cart = ({ close, isOrdered }) => {
                     <b>{item.discount_price} $</b>
                   </div>
                   <img
-                    onClick={() => dispatch(removeCartItem(item._id))}
+                    onClick={() => dispatch(removeCartItem(item.id))}
                     className="close-pic"
                     src="./img/close.svg"
                     alt="close"

@@ -5,6 +5,7 @@ const initialState = {
   price: 0,
   error: '',
   isLoading: false,
+  isOrdered: false,
 }
 
 const countPrice = (items) => {
@@ -30,11 +31,10 @@ export const cartSlice = createSlice({
         )
       }
       state.price = countPrice(state.cartItems)
+      state.isOrdered = false
     },
     removeCartItem: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (e) => e.id !== action.payload.id,
-      )
+      state.cartItems = state.cartItems.filter((e) => e.id !== action.payload)
       state.price = countPrice(state.cartItems)
     },
     cartItemsPostingSuccess: (state) => {
@@ -45,6 +45,7 @@ export const cartSlice = createSlice({
       state.error = ''
       state.cartItems = []
       state.price = 0
+      state.isOrdered = true
     },
     cartItemsPostingError: (state, action) => {
       state.isLoading = false

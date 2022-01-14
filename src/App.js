@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux'
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false)
-  const [isOrdered, setIsOrdered] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -21,7 +20,6 @@ function App() {
 
   const handleCartClose = () => {
     setCartOpen(!cartOpen)
-    setIsOrdered(false)
   }
 
   return (
@@ -35,7 +33,7 @@ function App() {
         </Routes>
 
         {cartOpen ? (
-          <Cart close={handleCartClose} isOrdered={isOrdered} />
+          <Cart close={handleCartClose}   />
         ) : null}
       </div>
     </div>

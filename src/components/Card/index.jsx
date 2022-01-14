@@ -24,9 +24,11 @@ const Card = ({
           alt="salad"
           className="yeezy-card-img"
         />
-        <div className={styles.title}>{title}</div>
+        <div className={title !== 'My Salad' ? styles.title : null}>
+          {title}
+        </div>
 
-        <p className={styles.subtext}>
+        <p className={title !== 'My Salad' ? styles.subtext : styles.selfmade}>
           состав:{' '}
           {composition.map((mol) => (
             <span key={mol}>
@@ -45,11 +47,13 @@ const Card = ({
               <span className={styles.oldprice}>{price} $</span>{' '}
             </b>
           </div>
-          <img
-            onClick={() => dispatch(addToCart({ id, title, discount_price }))}
-            src={isCartAdded ? './img/added.svg' : './img/add.svg'}
-            alt="add to cart"
-          />
+          {price ? (
+            <img
+              onClick={() => dispatch(addToCart({ id, title, discount_price }))}
+              src={isCartAdded ? './img/added.svg' : './img/add.svg'}
+              alt="add to cart"
+            />
+          ) : null}
         </div>
       </div>
     </div>
