@@ -1,15 +1,13 @@
 import React from 'react'
 
-const Cart = ({
-  close,
-  cartItems,
-  handleRemoveCartItem,
-  price,
-  handleBuy,
-  isOrdered,
-  error,
-  isOrderLoading,
-}) => {
+import { useSelector, useDispatch } from 'react-redux'
+import { postingCartItems, removeCartItem } from '../redux'
+const Cart = ({ close, isOrdered }) => {
+  const { cartItems, price, error, isLoading } = useSelector(
+    (state) => state.cart,
+  )
+  const dispatch = useDispatch()
+  console.log(cartItems + '123')
   return (
     <div
       className="sidebar-wrapper"
@@ -41,7 +39,7 @@ const Cart = ({
                     <b>{item.discount_price} $</b>
                   </div>
                   <img
-                    onClick={() => handleRemoveCartItem(item._id)}
+                    onClick={() => dispatch(removeCartItem(item._id))}
                     className="close-pic"
                     src="./img/close.svg"
                     alt="close"
@@ -49,7 +47,7 @@ const Cart = ({
                 </div>
               </div>
             ))}
-            {cartItems.length === 0 && !isOrdered && !error && !isOrderLoading && (
+            {cartItems.length === 0 && !isOrdered && !error && !isLoading && (
               <div style={{ paddingTop: '80px' }} className="no-items">
                 <img
                   style={{ cursor: 'default' }}
@@ -62,7 +60,7 @@ const Cart = ({
                 <p>добавьте товар в корзину</p>
               </div>
             )}
-            {isOrderLoading && (
+            {isLoading && (
               <div style={{ paddingTop: '80px' }} className="no-items">
                 <h2 style={{ color: '#9dd558' }}>
                   'идет обработка запроса...'
@@ -101,7 +99,7 @@ const Cart = ({
           <button
             className="sidebar-submit"
             disabled={cartItems.length === 0 ? true : false}
-            onClick={() => handleBuy()}>
+            onClick={() => dispatch(postingCartItems())}>
             Оформить заказ
             <svg
               width="16"

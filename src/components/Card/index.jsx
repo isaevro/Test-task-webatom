@@ -1,17 +1,18 @@
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../redux'
+
 import styles from './Card.module.scss'
 
 const Card = ({
+  id,
   title,
   price,
-  addToCart,
   isCartAdded,
   molecules,
   composition,
   discount_price,
 }) => {
-  const handleClickAdd = () => {
-    addToCart()
-  }
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.card}>
@@ -45,7 +46,7 @@ const Card = ({
             </b>
           </div>
           <img
-            onClick={handleClickAdd}
+            onClick={() => dispatch(addToCart({ id, title, discount_price }))}
             src={isCartAdded ? './img/added.svg' : './img/add.svg'}
             alt="add to cart"
           />
