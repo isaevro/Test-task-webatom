@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 import Molecule from '../components/Molecule'
 import Skeleton from '../components/Skeleton'
+import { removeCartItem } from '../redux'
 
 export const SelfMadepage = () => {
   const [myComposition, setMyComposition] = useState([])
   const [price, setPrice] = useState(0)
   const { molecules, isLoading, error } = useSelector((state) => state.items)
   const { cartItems } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(removeCartItem('My Salad'))
+  }, [dispatch])
+
   const handleAddToMySalad = (molecule) => {
     if (
       myComposition.filter((e) => e !== molecule.id).length ===
@@ -45,9 +53,9 @@ export const SelfMadepage = () => {
                 discount_price={price}
                 composition={myComposition}
                 molecules={molecules}
-                id={123}
+                id={'My Salad'}
                 price={price}
-                isCartAdded={cartItems.map((e) => e.id).includes(123)}
+                isCartAdded={cartItems.map((e) => e.id).includes('My Salad')}
               />
               <div>
                 <ul>

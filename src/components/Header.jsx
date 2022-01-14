@@ -11,7 +11,7 @@ const Header = ({ open }) => {
           <div className="header-inner">
             <Link to="/">
               <div className="headerLeft">
-                <img width={80} max-height={40} src="./img/logo.png" alt="" />
+                <img width={80} max-height={40} src="./logo.png" alt="" />
                 <div className="headerInfo">
                   <h3>Салаты из малекул</h3>
                   <div className="sub-title">магазин лучших салатов</div>

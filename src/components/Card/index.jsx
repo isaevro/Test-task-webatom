@@ -49,7 +49,9 @@ const Card = ({
           </div>
           {price ? (
             <img
-              onClick={() => dispatch(addToCart({ id, title, discount_price }))}
+              onClick={() =>
+                dispatch(addToCart({ id, title, discount_price, composition }))
+              }
               src={isCartAdded ? './img/added.svg' : './img/add.svg'}
               alt="add to cart"
             />

@@ -66,7 +66,7 @@ const Cart = ({ close }) => {
                 </h2>
               </div>
             )}
-            {cartItems.length === 0 && isOrdered && !error && (
+            {cartItems.length === 0 && isOrdered && !error && !isLoading && (
               <div style={{ paddingTop: '80px' }} className="no-items">
                 <img
                   style={{ cursor: 'default' }}
