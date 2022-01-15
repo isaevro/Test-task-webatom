@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { addToSelfMade } from '../../redux'
+import { useDispatch } from 'react-redux'
+import { addToSelfMade, removeCartItem } from '../../redux'
 import styles from './Molecule.module.scss'
 
 const Molecule = ({ molecule, myComposition }) => {
-  // const { myComposition } = useSelector((state) => state.selfMade)
   const dispatch = useDispatch()
   return (
     <li className={styles.molecule}>
@@ -20,6 +19,7 @@ const Molecule = ({ molecule, myComposition }) => {
               discount_price: molecule.discount_price,
               price: molecule.price,
             }),
+            dispatch(removeCartItem('My Salad')),
           )
         }
         src={

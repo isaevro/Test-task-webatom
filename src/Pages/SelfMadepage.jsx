@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 import Molecule from '../components/Molecule'
 import Skeleton from '../components/Skeleton'
-import { removeCartItem } from '../redux'
 
 export const SelfMadepage = () => {
   const { molecules, isLoading, error } = useSelector((state) => state.items)
