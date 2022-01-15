@@ -11,7 +11,7 @@ const Header = ({ open }) => {
           <div className="header-inner">
             <Link to="/">
               <div className="headerLeft">
-                <img width={80} max-height={40} src="./logo.png" alt="" />
+                <img width={80} max-height={40} src="./logo.png" alt="cart" />
                 <div className="headerInfo">
                   <h3>Салаты из малекул</h3>
                   <div className="sub-title">магазин лучших салатов</div>
@@ -20,7 +20,7 @@ const Header = ({ open }) => {
             </Link>
             <div className="headerRight-inner">
               <ul className="headerRight">
-                <li onClick={open}>
+                <li onClick={open} tabIndex={0}>
                   <img src="./img/cart.svg" alt="cart" />
                   <span>{price}$</span>
                 </li>

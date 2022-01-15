@@ -10,8 +10,8 @@ const Molecule = ({ molecule, myComposition }) => {
         <div>{molecule.title}</div>
         <div>цена: {molecule.discount_price} $</div>
       </div>
-      <img
-        className={styles.click}
+      <button
+        className="main-button"
         onClick={() =>
           dispatch(
             addToSelfMade({
@@ -21,14 +21,17 @@ const Molecule = ({ molecule, myComposition }) => {
             }),
             dispatch(removeCartItem('My Salad')),
           )
-        }
-        src={
-          myComposition.includes(molecule._id)
-            ? './img/added.svg'
-            : './img/add.svg'
-        }
-        alt="add to salad"
-      />
+        }>
+        <img
+          className={styles.click}
+          src={
+            myComposition.includes(molecule._id)
+              ? './img/added.svg'
+              : './img/add.svg'
+          }
+          alt="add to salad"
+        />
+      </button>
     </li>
   )
 }

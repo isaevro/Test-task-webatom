@@ -23,7 +23,13 @@ body {
   background-color: #343941;
   font-family: 'Inter', sans-serif;
 }
-
+.main-button {
+  padding: 0;
+  height: 32px;
+  width: 32px;
+  border: none;
+  background: transparent;
+}
 .container {
   max-width: 980px;
   margin: 0 auto;

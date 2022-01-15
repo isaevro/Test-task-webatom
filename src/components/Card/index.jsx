@@ -48,13 +48,16 @@ const Card = ({
             </b>
           </div>
           {price ? (
-            <img
+            <button
+              className="main-button"
               onClick={() =>
                 dispatch(addToCart({ id, title, discount_price, composition }))
-              }
-              src={isCartAdded ? './img/added.svg' : './img/add.svg'}
-              alt="add to cart"
-            />
+              }>
+              <img
+                src={isCartAdded ? './img/added.svg' : './img/add.svg'}
+                alt="add to cart"
+              />
+            </button>
           ) : null}
         </div>
       </div>

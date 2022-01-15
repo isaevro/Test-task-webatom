@@ -14,12 +14,9 @@ const Cart = ({ close }) => {
       <div className="sidebar">
         <div className="sidebar-title">
           <h2>Корзина</h2>
-          <img
-            onClick={close}
-            className="close-cart"
-            src="./img/close.svg"
-            alt="close"
-          />
+          <button className="main-button" onClick={close}>
+            <img className="close-cart" src="./img/close.svg" alt="close" />
+          </button>
         </div>
         <div className="sidebar-top">
           <div className="card-side-items">
@@ -37,12 +34,15 @@ const Cart = ({ close }) => {
                     <p>{item.title}</p>
                     <b>{item.discount_price} $</b>
                   </div>
-                  <img
-                    onClick={() => dispatch(removeCartItem(item.id))}
-                    className="close-pic"
-                    src="./img/close.svg"
-                    alt="close"
-                  />
+                  <button
+                    className="main-button"
+                    onClick={() => dispatch(removeCartItem(item.id))}>
+                    <img
+                      className="close-pic"
+                      src="./img/close.svg"
+                      alt="close"
+                    />
+                  </button>
                 </div>
               </div>
             ))}
