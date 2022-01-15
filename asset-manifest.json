@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Test-task-webatom/static/css/main.00410d62.chunk.css",
-    "main.js": "/Test-task-webatom/static/js/main.9bf18aa6.chunk.js",
-    "main.js.map": "/Test-task-webatom/static/js/main.9bf18aa6.chunk.js.map",
+    "main.css": "/Test-task-webatom/static/css/main.b86e12c7.chunk.css",
+    "main.js": "/Test-task-webatom/static/js/main.61ca5409.chunk.js",
+    "main.js.map": "/Test-task-webatom/static/js/main.61ca5409.chunk.js.map",
     "runtime-main.js": "/Test-task-webatom/static/js/runtime-main.68088dfa.js",
     "runtime-main.js.map": "/Test-task-webatom/static/js/runtime-main.68088dfa.js.map",
     "static/js/2.59861145.chunk.js": "/Test-task-webatom/static/js/2.59861145.chunk.js",
     "static/js/2.59861145.chunk.js.map": "/Test-task-webatom/static/js/2.59861145.chunk.js.map",
     "index.html": "/Test-task-webatom/index.html",
-    "static/css/main.00410d62.chunk.css.map": "/Test-task-webatom/static/css/main.00410d62.chunk.css.map",
+    "static/css/main.b86e12c7.chunk.css.map": "/Test-task-webatom/static/css/main.b86e12c7.chunk.css.map",
     "static/js/2.59861145.chunk.js.LICENSE.txt": "/Test-task-webatom/static/js/2.59861145.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.68088dfa.js",
     "static/js/2.59861145.chunk.js",
-    "static/css/main.00410d62.chunk.css",
-    "static/js/main.9bf18aa6.chunk.js"
+    "static/css/main.b86e12c7.chunk.css",
+    "static/js/main.61ca5409.chunk.js"
   ]
 }
