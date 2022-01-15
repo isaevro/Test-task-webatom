@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 import Molecule from '../components/Molecule'
@@ -7,28 +6,12 @@ import Skeleton from '../components/Skeleton'
 import { removeCartItem } from '../redux'
 
 export const SelfMadepage = () => {
-  const [myComposition, setMyComposition] = useState([])
-  const [price, setPrice] = useState(0)
   const { molecules, isLoading, error } = useSelector((state) => state.items)
   const { cartItems } = useSelector((state) => state.cart)
-  const dispatch = useDispatch()
+  const { price, discount_price, myComposition } = useSelector(
+    (state) => state.selfMade,
+  )
 
-  useEffect(() => {
-    dispatch(removeCartItem('My Salad'))
-  }, [dispatch])
-
-  const handleAddToMySalad = (molecule) => {
-    if (
-      myComposition.filter((e) => e !== molecule.id).length ===
-      myComposition.length
-    ) {
-      setMyComposition((prev) => [...prev, molecule.id])
-      setPrice(price + molecule.price)
-    } else {
-      setMyComposition(myComposition.filter((e) => e !== molecule.id))
-      setPrice(price - molecule.price)
-    }
-  }
   return (
     <>
       <div className="content">
@@ -50,7 +33,7 @@ export const SelfMadepage = () => {
             <div className="cards">
               <Card
                 title={'My Salad'}
-                discount_price={price}
+                discount_price={discount_price}
                 composition={myComposition}
                 molecules={molecules}
                 id={'My Salad'}
@@ -64,9 +47,8 @@ export const SelfMadepage = () => {
                     .map((molecule) => (
                       <Molecule
                         key={molecule._id}
-                        molecule={molecule}
                         myComposition={myComposition}
-                        handleAddToMySalad={handleAddToMySalad}
+                        molecule={molecule}
                       />
                     ))}
                 </ul>

@@ -20,10 +20,10 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      if (
+      const isNew =
         state.cartItems.filter((e) => e.id !== action.payload.id).length ===
         state.cartItems.length
-      ) {
+      if (isNew) {
         state.cartItems.push(action.payload)
       } else {
         state.cartItems = state.cartItems.filter(
